@@ -26,7 +26,7 @@ check_if_meta_yaml_file_exists() {
 build_package(){
     # Build for Linux
     conda install boa -c conda-forge
-    conda mambabuild -c conda-forge -c pytorch -c fcakyon -c districtdatalabs --output-folder . .
+    conda mambabuild -c conda-forge --output-folder . .
     echo "------------------------------------"
     ls -ratl
     echo "------------------------------------"
