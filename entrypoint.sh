@@ -25,8 +25,11 @@ check_if_meta_yaml_file_exists() {
 
 build_package(){
     # Build for Linux
-    conda build -c conda-forge -c pytorch -c fcakyon -c districtdatalabs --output-folder . .
-
+    conda install boa -c conda-forge
+    conda mambabuild -c conda-forge -c pytorch -c fcakyon -c districtdatalabs --output-folder . .
+    echo "------------------------------------"
+    ls -ratl
+    echo "------------------------------------"
     # Convert to other platforms: OSX, WIN
     if [[ $INPUT_PLATFORMS == *"osx"* ]]; then
     conda convert -p osx-64 linux-64/*.tar.bz2
