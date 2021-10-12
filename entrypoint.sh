@@ -30,6 +30,10 @@ build_package(){
     echo "------------------------------------"
     ls -ratl
     echo "------------------------------------"
+    ls -ratl noarch
+    echo "------------------------------------"
+    ls -ratl linux-64
+    echo "------------------------------------"
     # Convert to other platforms: OSX, WIN
     if [[ $INPUT_PLATFORMS == *"osx"* ]]; then
     conda convert -p osx-64 linux-64/*.tar.bz2
