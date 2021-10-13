@@ -27,36 +27,11 @@ build_package(){
     # Build for Linux
     conda install boa -c conda-forge
     conda mambabuild -c conda-forge --output-folder . .
-    echo "------------------------------------"
-    ls -ratl
-    echo "------------------------------------"
-    ls -ratl noarch
-    echo "------------------------------------"
-    ls -ratl linux-64
-    echo "------------------------------------"
-    # Convert to other platforms: OSX, WIN
-    if [[ $INPUT_PLATFORMS == *"linux-64"* ]]; then
-    conda convert -p linux-64 noarch/*.tar.bz
-    fi
-    if [[ $INPUT_PLATFORMS == *"osx"* ]]; then
-    conda convert -p osx-64 noarch/*.tar.bz2
-    fi
-    if [[ $INPUT_PLATFORMS == *"win"* ]]; then
-    conda convert -p win-64 noarch/*.tar.bz2
-    fi
 }
 
 upload_package(){
     export ANACONDA_API_TOKEN=$INPUT_ANACONDATOKEN
-    if [[ $INPUT_PLATFORMS == *"osx"* ]]; then
-    anaconda upload --label main osx-64/*.tar.bz2
-    fi
-    if [[ $INPUT_PLATFORMS == *"linux"* ]]; then
-    anaconda upload --label main linux-64/*.tar.bz2
-    fi
-    if [[ $INPUT_PLATFORMS == *"win"* ]]; then
-    anaconda upload --label main win-64/*.tar.bz2
-    fi
+    anaconda upload --label main noarch/*.tar.bz2
 }
 
 check_if_setup_file_exists
